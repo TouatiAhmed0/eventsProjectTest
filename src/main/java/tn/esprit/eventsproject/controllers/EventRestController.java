@@ -24,10 +24,6 @@ public class EventRestController {
     public Event addEventPart(@RequestBody Event event, @PathVariable("id") int idPart){
         return eventServices.addAffectEvenParticipant(event, idPart);
     }
-    @PostMapping("/addEvent")
-    public Event addEvent(@RequestBody Event event){
-        return eventServices.addAffectEvenParticipant(event);
-    }
     @PutMapping("/addAffectLog/{description}")
     public Logistics addAffectLog(@RequestBody Logistics logistics,@PathVariable("description") String descriptionEvent){
         return eventServices.addAffectLog(logistics,descriptionEvent);
@@ -36,4 +32,25 @@ public class EventRestController {
     public List<Logistics> getLogistiquesDates (@PathVariable("d1") LocalDate date_debut, @PathVariable("d2") LocalDate date_fin){
         return eventServices.getLogisticsDates(date_debut,date_fin);
     }
+
+    @GetMapping("/hello")
+    public String hello(){
+        return "Hello World";
+    }
+
+    @PostMapping("/addEvent")
+    public Event addEvent(@RequestBody Event event){
+        return eventServices.addAffectEvenParticipant(event);
+    }
+
+    @GetMapping("/getEvent/{id}")
+    public Event getEvent( @PathVariable("id") int id){
+        return eventServices.retrieveEvent(id);
+    }
+
+    @GetMapping("/getAll")
+    public List<Event> getAll(){
+        return eventServices.getAll();
+    }
+
 }

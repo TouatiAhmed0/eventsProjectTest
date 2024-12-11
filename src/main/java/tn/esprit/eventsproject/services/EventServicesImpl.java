@@ -117,4 +117,45 @@ public class EventServicesImpl implements IEventServices{
         }
     }
 
+    @Override
+    public Event addEvent(Event event) {
+        return eventRepository.save(event);
+    }
+
+    @Override
+    public void deleteEvent(int idEvent) {
+        if (eventRepository.existsById(idEvent)) {
+            eventRepository.deleteById(idEvent);
+        } else {
+            throw new IllegalArgumentException("Event with ID " + idEvent + " does not exist.");
+        }
+    }
+
+    @Override
+    public Event updateEvent(int idEvent, Event updatedEvent) {
+        Event existingEvent = eventRepository.findById(idEvent).orElseThrow(() ->
+                new IllegalArgumentException("Event with ID " + idEvent + " does not exist.")
+        );
+
+        // Update fields
+        existingEvent.setDescription(updatedEvent.getDescription());
+        existingEvent.setDateDebut(updatedEvent.getDateDebut());
+        existingEvent.setDateFin(updatedEvent.getDateFin());
+        existingEvent.setCout(updatedEvent.getCout());
+
+        // Save updated event
+        return eventRepository.save(existingEvent);
+    }
+
+    @Override
+    public Event retrieveEvent(int idEvent) {
+        return eventRepository.findById(idEvent)
+                .orElseThrow(() -> new IllegalArgumentException("Event with ID " + idEvent + " does not exist."));
+    }
+
+    @Override
+    public List<Event> getAll() {
+        return eventRepository.findAll();
+    }
+
 }
