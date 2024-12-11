@@ -1,11 +1,9 @@
-# Ignore Maven and Gradle build directories
-target/
-build/
+# Ignore Maven and Gradle build directories (commented out so we can track them)
+# target/
+# build/
 
 # Allow Maven wrapper (if applicable)
 !.mvn/wrapper/maven-wrapper.jar
-!**/src/main/**/target/
-!**/src/test/**/target/
 
 ### STS (Spring Tool Suite) ###
 .apt_generated
@@ -27,7 +25,7 @@ build/
 /nbbuild/
 /dist/
 /nbdist/
-/.nb-gradle/
+/nb-gradle/
 
 ### VS Code ###
 .vscode/
